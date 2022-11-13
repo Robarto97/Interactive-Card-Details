@@ -1,0 +1,272 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500&display=swap");
+$errorColor: hsl(0, 100%, 66%);
+$activeInputBorder: hsl(249, 99%, 64%) to hsl(278, 94%, 30%);
+$whiteColor: hsl(0, 0%, 100%);
+$lightGrayishViolet: hsl(270, 3%, 87%);
+$darkGrayishViolet: hsl(279, 6%, 55%);
+$veryDarkViolet: hsl(278, 68%, 11%);
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+body {
+  min-height: 100vh;
+  background-image: url(images/bg-main-desktop.png);
+  background-repeat: no-repeat;
+  position: relative;
+  background-color: black;
+}
+
+main {
+  min-height: 100vh;
+  width: 70%;
+  margin-left: auto;
+  background-color: $whiteColor;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  form {
+    width: 35%;
+    margin-left: 10%;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: repeat(4, auto);
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1.5rem 1rem;
+    div {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .name,
+    .number,
+    button {
+      grid-column: 1 / span 2;
+    }
+    .date {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      label {
+        grid-column: 1 / span 2;
+      }
+    }
+    label {
+      text-transform: uppercase;
+      font-size: 0.65rem;
+      letter-spacing: 2px;
+      color: $veryDarkViolet;
+    }
+    input {
+      border: 1px solid $lightGrayishViolet;
+      border-radius: 10px;
+      padding: 0.5rem 0.75rem;
+    }
+    input::placeholder {
+      color: $lightGrayishViolet;
+    }
+    input:focus {
+      outline: none;
+      background: linear-gradient(white, white) padding-box,
+        linear-gradient(to right, hsl(249, 99%, 64%), hsl(278, 94%, 30%))
+          border-box;
+      border: 1px solid transparent;
+      cursor: pointer;
+    }
+    button {
+      border: none;
+      background-color: $veryDarkViolet;
+      color: $whiteColor;
+      border-radius: 10px;
+      padding: 0.75rem;
+      cursor: pointer;
+      margin-top: 0.5rem;
+    }
+    p {
+      display: none;
+      font-size: 0.7rem;
+      color: $errorColor;
+      grid-column: 1 / span 2;
+    }
+    p.show {
+      display: block;
+    }
+    input.error {
+      border-color: $errorColor;
+    }
+  }
+  .complete {
+    display: none;
+    width: 35%;
+    margin-left: 10%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    .img-wrapper {
+      width: 20%;
+      img {
+        width: 100%;
+        display: block;
+      }
+    }
+    h1 {
+      text-transform: uppercase;
+      font-size: 1.75rem;
+      letter-spacing: 3px;
+      color: $veryDarkViolet;
+    }
+    p {
+      color: $darkGrayishViolet;
+      font-size: 1rem;
+    }
+    button {
+      width: 100%;
+      margin-top: 1.5rem;
+      border: none;
+      background-color: $veryDarkViolet;
+      color: $whiteColor;
+      border-radius: 10px;
+      padding: 0.75rem;
+      cursor: pointer;
+    }
+  }
+}
+.cardFront {
+  position: absolute;
+  top: 35%;
+  left: 25%;
+  width: 25%;
+  height: 29%;
+  transform: translate(-50%, -50%);
+  background-image: url(images/bg-card-front.png);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  img {
+    width: 25%;
+  }
+  .text {
+    color: $whiteColor;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    .number {
+      font-size: 1.4rem;
+      letter-spacing: 2px;
+    }
+    .bottom {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      .name {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+      }
+      .date {
+        font-size: 0.75rem;
+        letter-spacing: 2px;
+      }
+    }
+  }
+}
+.cardBack {
+  position: absolute;
+  top: 70%;
+  left: 30%;
+  width: 25%;
+  height: 29%;
+  transform: translate(-50%, -50%);
+  background-image: url(images/bg-card-back.png);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 2.75rem;
+  padding-bottom: 0.25rem;
+  color: $whiteColor;
+  span {
+    font-size: 0.75rem;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  #root {
+    width: 100%;
+  }
+  body {
+    background-image: url(images/bg-main-mobile.png);
+    background-position: top;
+    background-size: contain;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  main {
+    width: 100%;
+    margin-top: 13rem;
+    min-height: 75vh;
+    form {
+      width: 90%;
+      margin-left: unset;
+      margin-top: 5rem;
+      margin-bottom: 2.5rem;
+      #submit {
+        margin-top: unset;
+      }
+    }
+    .cardBack {
+      top: 15%;
+      left: 57%;
+      width: 75%;
+      height: 22%;
+      padding-right: 2rem;
+      padding-bottom: 0.25rem;
+      z-index: 0;
+      span {
+        font-size: 0.5rem;
+      }
+    }
+    .cardFront {
+      top: 27%;
+      left: 42%;
+      width: 75%;
+      height: 22%;
+      z-index: 1;
+      img {
+        width: 20%;
+      }
+      .text {
+        gap: 1rem;
+        .number {
+          font-size: 0.95rem;
+        }
+        .bottom {
+          p {
+            font-size: 0.5rem !important;
+          }
+        }
+      }
+    }
+    .complete {
+      width: 90%;
+      text-align: center;
+      margin: 0 auto;
+      height: 65vh;
+      .img-wrapper {
+        width: 25%;
+      }
+    }
+  }
+}
